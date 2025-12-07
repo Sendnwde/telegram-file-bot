@@ -2,9 +2,12 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, ContextTypes, filters
 import secrets
 import sqlite3
+import os
 
-BOT_TOKEN = "8228530187:AAGcmRXRPH3evxx0PknTtwDh4opQ9Oqd5c4"
-ADMIN_ID = 8411281881  # Your Telegram ID
+# ===== ENV VARIABLES =====
+BOT_TOKEN = os.environ.get("TOKEN")  # Your bot token from Railway/Host
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "8411281881"))  # Default admin if not set
+# ========================
 
 # ===== DATABASE SETUP =====
 conn = sqlite3.connect("files.db", check_same_thread=False)
